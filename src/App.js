@@ -10,32 +10,28 @@ function App() {
   const [workers, setWorkers] = useState([]);
   const [flights, setFlights] = useState([]);
   const [info, setInfo] = useState([]);
+  const [selected, setSelected] = useState(null);
+  const [selectedFlight, setSelectedFlight] = useState(null);
 
   const showFlights = (e) => {
     // setWorkerId(null)
+    setSelected(e)
     setWorkerId(e)
     // setInfo([])
   };
   const showInfo = (e) => {
-    setInfo(e)
+    setInfo(e) 
+    setSelectedFlight(e)
   };
-  setInterval(() => { 
-    setWorkerId(workerId)
-  }, 60000);
 
   return (
     <>
-      <div className="info-user">
-        <h2>Workers</h2>
-        <h2>Flights</h2>
-        <h2>Flight Date</h2>
-      </div>
       <div className="content-wrapper">
         
-        <Workers showFlights={showFlights} setLoading={setLoading} loading={loading} workers={workers} setWorkers={setWorkers} setFlights={setFlights}/> 
+        <Workers showFlights={showFlights} setLoading={setLoading} loading={loading} selected={selected} setSelected={setSelected} workers={workers} setWorkers={setWorkers} setFlights={setFlights}/> 
 
         
-        {workerId !== null ? <FlightChart setLoading={setLoading} loading={loading} showInfo={showInfo} id={workerId} flights={flights} setFlights={setFlights}/> : null} 
+        {workerId !== null ? <FlightChart setLoading={setLoading} loading={loading} selectedFlight={selectedFlight} selected={selected} setWorkerId={setWorkerId}setSelected={setSelected} showInfo={showInfo} id={workerId} flights={flights} setFlights={setFlights}/> : null} 
         
 
         {info.length !== 0 ? <FlightInfo loading={loading} info={info} flights={flights[info]}  /> : null} 

@@ -1,9 +1,10 @@
 import React from 'react'
 
 const FlightInfo = ({info,loading}) => {
-    const p = info;
-    const hours = Math.floor(p[1] / 60);          
-    const minutes = p[1] % 60; 
+    //p.plane,p.duration,p.from_gate,p.to_gate
+    const p = Object.values(info);
+    const hours = Math.floor(p[6] / 60);          
+    const minutes = p[6] % 60; 
     const duration = `${hours}h ${minutes}min`;
     return loading ? ( 
         null
@@ -16,10 +17,10 @@ const FlightInfo = ({info,loading}) => {
                     <h4>Destination gate</h4>
                 </div>
                 <div className="info-field">
-                    <h4>{p[0]}</h4>
+                    <h4>{p[5]}</h4>
                     <h4>{duration}</h4>
-                    <h4>{p[2]}</h4>
-                    <h4>{p[3]}</h4>
+                    <h4>{p[7]}</h4>
+                    <h4>{p[8]}</h4>
                 </div>
 
         </div>
